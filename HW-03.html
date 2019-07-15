@@ -7,11 +7,11 @@
 <body>
 	<script>
 	var age = prompt('Сколько Вам лет?', '');
-
-			//с проверкой всё крашится, хэлп//
-			//if (isNaN(age)) {
-		//alert('Вы ввели не число!');}
-		
+	
+	if (isNaN(age)) {
+		alert('Вы ввели не число!');
+		}
+	else {
 		if (age % 10 == 1 && age % 100 != 11) {
 			alert(age + " год"); }
 		else if (age % 10 == 2 || age % 10 == 3 || age % 10 == 4) { 
@@ -23,7 +23,7 @@
 		} else {
 			alert(age + " лет");}
 
-
+}
 			
 	</script>
 </body>
