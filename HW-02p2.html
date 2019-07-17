@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+
+<body>
+	<script> 
+		var name = prompt('Как Вас зовут?', '');
+		var age = prompt('Сколько Вам лет?', '');
+		var smoke = confirm('Курите?');
+		var result;
+
+
+		result = (age < 18) ? ( smoke ?
+			(alert(name + ', маме расскажу!')) :
+			(alert(name + ' так держать!'))
+		) :
+
+		 smoke ?
+		 	(alert(name + ', и зря')) :
+			(alert(name + ', молодец. И не надо.'));
+	
+	</script>
+</body>
+
+</html>
