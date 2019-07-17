@@ -8,8 +8,9 @@
 	<script>
 	var age = prompt('Сколько Вам лет?', '');
 	
-	if (isNaN(age)) {
-		alert('Вы ввели не число!');
+	
+	if (!Number(age)){
+			alert ('Это не число!')
 		}
 	else {
 		if (age % 10 == 1 && age % 100 != 11) {
