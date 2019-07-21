@@ -6,15 +6,18 @@
 </head>
 <body>
 	<script>
+	
+var line = prompt ('Введите число', '5');
+var type = "";
+var triangle = "\n";
+var star = "*";
+var result = "";
 
-		var line = prompt ('Введите число', '5');
-		var triangle = " ";
-		var star = "*";
-
-		for(var i = 0; i < line; i++){
-    		triangle += star;
-    		console.log(triangle);	
-		}
+for(var i = 0; i < line; i++){
+    		type += star;
+    		result += type + triangle;
+	}
+	console.log(result);
 
 	</script>
 </body>
