@@ -27,7 +27,7 @@
 
 	//2nd task
 
- 	var a,b,c;
+ 	
 
 function s(a,b) {
   console.log(a + b + a);
@@ -38,12 +38,20 @@ function f(a, b, c) {
     console.log(a + b);
     return a + b;
   }
-  var result;
+  
   			a = a || 2;
 			b = b || 3;
-			
-  result = typeof c == "function"?c(a,b):sum(a,b);
-  return result;
+	
+//return typeof c === "function" ? c(a,b) : sum(a,b);
+	
+if ( typeof c === "function"){
+		s(a,b);
+		return a + b + a;
+	} else {
+		sum(a,b);
+		return a + b;
+	}	
+ 
 }
 		f(3,5,s);
 
