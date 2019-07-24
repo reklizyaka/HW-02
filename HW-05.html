@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+
+	//1st task
+
+	function drawTriangle() {
+			var i = 0;
+		var line = prompt("Введите число", ' ');
+		
+		var triangle = '';
+		var result = '';
+		
+			while (i<line) {
+			i++;
+			triangle += '*';
+			result += triangle + '\n';
+			}
+			console.log(result);
+			return result;
+
+	}
+			drawTriangle();
+
+	//2nd task
+
+ 	var a,b,c;
+
+function s(a,b) {
+  console.log(a + b + a);
+  return a + b + a;
+}
+function f(a, b, c) {
+  function sum(a, b) {
+    console.log(a + b);
+    return a + b;
+  }
+  var result;
+  			a = a || 2;
+			b = b || 3;
+			
+  result = typeof c == "function"?c(a,b):sum(a,b);
+  return result;
+}
+		f(3,5,s);
+
+	</script>
+</body>
+</html>
