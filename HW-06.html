@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	//1st task
+		function isCharPresent(symbol, string) {
+			
+   if (string.search(symbol) !== -1){
+      return true;
+   }else{
+      return false;
+   }
+}
+alert(isCharPresent('w', "word"));
+			
+	//2nd task
+	function charIndexOf (symbol, string) {
+		for (i = 0; i < string.length; i++) {
+			var search = string.substring(i, i+1);
+				if (string.search(symbol) === -1) {
+					return -1;
+				} else if (search === symbol) {
+					return i;
+				}
+		}
+	}
+	alert(charIndexOf('w', "word"));
+
+	//3d task
+	
+	var girl = {
+  		name: 'Ann',
+  		surname: 'Reklizon',
+  		age: 21,
+  		skills: {
+    		js: false
+  			}
+		};
+
+		var clone = {};
+		function cloneObject(obj) {
+
+  			for(var key in obj) {
+    			if(obj[key] !== null && typeof(obj[key]) ==="object") {
+       		clone[key] = {};
+       		console.log([key]);
+    		for (var i in obj[key]) {
+          clone[key][i] = obj[key][i];
+        }}
+      else
+          clone[key] = obj[key];
+  }
+  return clone;
+  		}
+	
+	
+
+
+	</script>
+</body>
+</html>
