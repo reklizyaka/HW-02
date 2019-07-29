@@ -7,32 +7,41 @@
 <body>
 	<script>
 	//1st task
+
 		function isCharPresent(symbol, string) {
-			
-   if (string.search(symbol) !== -1){
-      return true;
-   }else{
-      return false;
-   }
-}
-alert(isCharPresent('w', "word"));
-			
-	//2nd task
-	function charIndexOf (symbol, string) {
-		for (i = 0; i < string.length; i++) {
-			var search = string.substring(i, i+1);
-				if (string.search(symbol) === -1) {
-					return -1;
-				} else if (search === symbol) {
-					return i;
-				}
+			for(i = 0; i < string.length; i++){
+    			search = string.substring(i, i+1);
+   			 if (search === symbol) {
+        		 return true;
+   			 }
+    
+   			 }
+
+ 		 	return false;  
 		}
-	}
-	alert(charIndexOf('w', "word"));
+		
+		alert(isCharPresent('i', "word"));
+
+	
+
+	//2nd task
+		/*function isCharPresent(symbol, string) {
+			for(i = 0; i < string.length; i++){
+    			search = string.substring(i, i+1);
+   			 if (search === symbol) {
+        		 return i;
+   			 }
+    
+   			 }
+
+ 		 	return -1;  
+		}
+
+		alert(isCharPresent('o', "word"));*/
 
 	//3d task
 	
-	var girl = {
+	/*var girl = {
   		name: 'Ann',
   		surname: 'Reklizon',
   		age: 21,
@@ -56,7 +65,7 @@ alert(isCharPresent('w', "word"));
   }
   return clone;
   		}
-	
+	*/
 	
 
 
