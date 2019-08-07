@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+
+		function padString (string, number, symbol, isRight) {
+			if (string.length >= number) {
+				return string;
+			}
+
+			var string = isRight ? string + symbol : symbol + string;
+			return padString(string, number, symbol, isRight)
+		};
+
+		console.log(padString('Bang', 10, '*', true));
+
+	</script>
+</body>
+</html>

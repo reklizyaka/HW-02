@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		
+		//1st task
+		var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+		function odd (ar){
+			var a = [];
+
+			for (var i = 0; i < ar.length; i++) {
+				if(ar[i] % 2 === 0) { 
+					a.push(ar[i]);
+				}
+			}
+			return a;
+		}
+
+		alert(odd(arr));
+
+
+		//2nd task
+
+		var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+		function even (ar){
+			var a = [];
+
+			for (var i = 0; i < ar.length; i++) {
+				if(ar[i] % 2 !== 0) { 
+					a.push(ar[i]);
+				}
+			}
+			return a;
+		}
+
+		alert(even(arr));
+
+		//3d task
+
+		var r;
+		var i = 1;
+		function revert(n) {
+			debugger;
+			var a = n;
+			var x = 0;
+			n = n.toString();
+			x = n.split('').reverse().join('');
+			console.log(a);
+			var sum;
+			while (a!== +x) {
+				i++;
+				sum = +x + a;
+				return  revert(sum);
+				console.log(i);
+			}
+			r = i;
+			i = 1;
+			return r;		
+		};
+
+
+
+		//4th task
+
+		var arr =  [ 1, 2, 3,[4,[5 ,6,[7],8],9],];
+
+		function flatAlt(arr) {
+			var arr2 = arr.toString().split(',').map(function(item){
+				return +item;
+			});
+			return arr2;
+		}
+		console.log(flatAlt(arr));
+		
+
+
+
+
+ 
+
+	</script>
+</body>
+</html>
