@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    const notification  = [{
+        date: '21/08/2019',
+        msg: 'Moo',
+    },
+        {
+            date: '22/08/2019',
+            msg: 'Boo',
+        },
+        {
+            date: '29/01/2019',
+            msg: 'Anya',
+        },
+        {
+            date: '19/10/2019',
+            msg: 'Ololo',
+        },
+        {
+            date: '29/01/2019',
+            msg: 'Kartoshka',
+        },
+        {
+            date: '24/04/2019',
+            msg: 'Petuh',
+        }];
+
+    function sortNotification(notification) {
+        function sortByDate(arrDate) {
+            arrDate.sort(function(a, b) {
+                a = a.date.split("/").reverse().join("");
+                b = b.date.split("/").reverse().join("");
+                if (b < a) {
+                    // console.log(b, a);
+                    return 1;
+                }
+                if (b > a) {
+                    return -1;
+                }
+            });
+        }
+        sortByDate(notification);
+        return notification.reduce(function(accum, item) {
+            if (!accum.length || accum[accum.length - 1].title !== item.date) {
+                let arr = [];
+                arr.push(item.msg);
+                let obj = {
+                    title: item.date,
+                    items: arr
+                };
+                accum.push(obj);
+            } else {
+                accum[accum.length - 1].items.push(item.msg);
+            }
+            return accum;
+        }, []);
+    }
+    let sorted = sortNotification(notification);
+    console.log(sorted);
+
+
+</script>
+</body>
+</html>
