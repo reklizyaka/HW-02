@@ -30,7 +30,8 @@
 				let found = this.task.some(function (element) {
 					return element.taskContent === textTask;
 				});
-				if (!found) { this.task.push({
+				if (!found) { 
+					this.task.push({
 					taskContent: textTask,
 					isDone: false, 
 					Date: this.taskDate(),
