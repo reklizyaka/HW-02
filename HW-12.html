@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    function Student (name, surname, born) {
+        this.name = name;
+            this.surname = surname;
+            this.born = born;
+        this.mark = new Array(30);
+        this.attendance = new Array(30);
+    }
+
+    Student.prototype.getAge = function(){
+        let bday = this.born.split("/");
+        let d = new Date();
+
+        let studday = bday[0];
+        let studmonth = bday[1];
+        let studyear = bday[2];
+
+        let currentDay = d.getDate();
+        let currentMonth = d.getMonth()+1;
+        let currentYear = d.getFullYear();
+
+        let age = currentYear - studyear;
+
+        if((currentMonth < studmonth) || ( (currentMonth === studmonth) && currentDay < studday)){
+
+            age--;
+
+        }
+
+        return age;
+    },
+
+        Student.prototype.getAvarageMark = function() {
+            return this.mark.reduce((sum, mark) => {
+                return sum = sum + mark;
+            }, 0) / this.mark.length;
+        }
+
+    Student.prototype.getAverageAttendance = function() {
+        return this.attendance.filter(item => item).length / this.attendance.length;
+    },
+
+        Student.prototype.markPush = function(mark) {
+            if (mark <= 10 && mark >= 0) {
+                if (this.mark.filter(item => item >= 0).length < 30) {
+                    return this.mark[this.mark.filter(item => item >= 0).length] = mark;
+                } else {
+                    return ('Уже переполнено, сорян');
+                }
+            } else {
+                return ('От 0 до 10 оценка!');
+            }
+        },
+
+        Student.prototype.present = function() {
+            if (this.attendance.filter(item => item >= 0).length < 30){
+                return this.attendance[this.attendance.filter(item => item >= 0).length] = true;
+            } else {
+                return 'Всего 30 занятий!';
+            }
+        },
+        Student.prototype.absent = function() {
+            if (this.attendance.filter(item => item >= 0).length < 30){
+                return this.attendance[this.attendance.filter(item => item >= 0).length] = false;
+            } else {
+                return 'Всего 30 занятий!';
+            }
+        },
+
+        Student.prototype.summary = function(){
+            let avarageMark = this.getAvarageMark();
+            let avarageAttandance = this.getAverageAttendance();
+
+            if (avarageMark > 9 && avarageAttandance > 0.9) {
+                return ('Ути какой молодчинка');
+            } else if (avarageMark < 9 && avarageAttandance < 0.9) {
+                return ('Редиска');
+            } else {
+                return ('Норм, но можно лучше');
+            }
+        };
+
+    let anya = new Student ('Ann', 'Reklizon', '28/12/1997');
+
+    console.log(anya);
+
+    console.log(anya.getAge());
+
+    anya.present();
+    anya.present();
+    anya.absent();
+    anya.present();
+    anya.present();
+    anya.absent();
+    anya.present();
+    anya.present();
+    anya.absent();
+    anya.present();
+    anya.absent();
+    anya.present();
+    anya.present();
+    anya.present();
+    anya.absent();
+    anya.present();
+    anya.present();
+    anya.absent();
+    anya.present();
+    anya.present();
+    anya.absent();
+    anya.present();
+    anya.absent();
+    anya.present();
+    anya.present();
+    anya.present();
+    anya.absent();
+    anya.present();
+    anya.present();
+    anya.absent();
+
+    console.log(anya.getAverageAttendance());
+
+    anya.markPush(5);
+    anya.markPush(5);
+    anya.markPush(5);
+    anya.markPush(0);
+    anya.markPush(5);
+    anya.markPush(5);
+    anya.markPush(5);
+    anya.markPush(5);
+    anya.markPush(5);
+    anya.markPush(5);
+    anya.markPush(8);
+    anya.markPush(5);
+    anya.markPush(5);
+    anya.markPush(5);
+    anya.markPush(5);
+    anya.markPush(5);
+    anya.markPush(5);
+    anya.markPush(10);
+    anya.markPush(10);
+    anya.markPush(5);
+    anya.markPush(0);
+    anya.markPush(0);
+    anya.markPush(0);
+    anya.markPush(0);
+    anya.markPush(0);
+    anya.markPush(0);
+    anya.markPush(0);
+    anya.markPush(0);
+    anya.markPush(0);
+    anya.markPush(0);
+    anya.markPush(0);
+
+    console.log(anya.getAvarageMark());
+
+    console.log(anya.summary());
+</script>
+</body>
+</html>
