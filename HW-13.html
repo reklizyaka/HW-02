@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    const sizeMD = {
+        calories: 200,
+        price: 100,
+    };
+
+    const sizeXL = {
+        calories: 350,
+        price: 160,
+    };
+
+    const beefCutlet = {
+        name: 'Beef Cutlet',
+        calories: 120,
+        price: 40,
+    };
+
+    const chickenCutlet = {
+        name: 'Chicken Cutlet',
+        calories: 80,
+        price: 60,
+    };
+
+    const stuffingCheese = {
+        name: 'Cheese',
+        calories: 15,
+        price: 10,
+    };
+
+    const stuffingPotato = {
+        name: 'Potato',
+        calories: 65,
+        price: 10,
+    };
+
+    const toppingMayo = {
+        name: 'Mayo',
+        calories: 30,
+        price: 10,
+    };
+
+    const toppingKetchup = {
+        name: 'Ketchup',
+        calories: 25,
+        price: 10,
+    };
+
+
+    function Hamburger(size) {
+        this.size = size;
+        this.topping = [];
+        this.stuffing = [
+            {
+                cutlet: beefCutlet,
+                calories: 120,
+                price: 40,
+            }
+        ];
+    }
+    
+    function Cheeseburger(size) {
+        this.size = size;
+        this.topping = [];
+        this.stuffing = [
+            {
+                cutlet: chickenCutlet,
+                calories: 80,
+                price: 60,
+            },
+
+            {
+                stuffing: stuffingCheese,
+                calories: 15,
+                price: 10,
+            }
+        ];
+    }
+    Cheeseburger.prototype = Object.create(Hamburger.prototype);
+
+    Hamburger.prototype.addStuffing = function(stuffing) {
+        this.stuffing.push(stuffing)
+    };
+
+    Hamburger.prototype.addTopping = function(topping) {
+        this.topping.push(topping)
+    };
+
+    Hamburger.prototype.calculateCalories = function() {
+        let price = 0;
+        price += this.size.calories;
+        let stuffingCalories = this.stuffing.reduce(function(accum,item) {
+            accum += item['calories'];
+            return accum
+        },0);
+
+        let toppingCalories = this.topping.reduce(function(accum,item) {
+            accum += item['calories'];
+            return accum
+        },0);
+
+        return price + stuffingCalories + toppingCalories
+    };
+
+    Hamburger.prototype.calculatePrice = function() {
+        let price = 0;
+        price += this.size.price;
+        let stuffingPrice = this.stuffing.reduce(function(accum,item) {
+            accum += item['price'];
+            return accum
+        },0);
+
+        let toppingPrice = this.topping.reduce(function(accum,item) {
+            accum += item['price'];
+            return accum
+        },0);
+
+        return price + stuffingPrice + toppingPrice;
+    };
+
+    const burger = new Hamburger(sizeMD);
+    console.log(burger);
+
+    // добавка из майонеза
+
+    burger.addTopping(toppingMayo);
+
+    // спросим сколько там калорий
+
+    console.log("Calories: " + burger.calculateCalories());
+
+    // // сколько стоит
+
+    console.log("Price: " + burger.calculatePrice());
+    // // я тут передумал и решил добавить еще приправу
+
+    burger.addTopping(toppingKetchup);
+
+    // // А сколько теперь стоит?
+
+    console.log("Price with sauce: " + burger.calculatePrice());
+
+    console.log(burger);
+
+    const cheesburger = new Cheeseburger(sizeXL);
+    console.log(cheesburger);
+    cheesburger.addStuffing(stuffingCheese);
+    console.log("Calories: " + cheesburger.calculateCalories());
+    cheesburger.addTopping(toppingMayo);
+    console.log("Price: " + cheesburger.calculatePrice());
+    console.log("Price with sauce: " + cheesburger.calculatePrice());
+    console.log(cheesburger);
+
+
+</script>
+</body>
+</html>
