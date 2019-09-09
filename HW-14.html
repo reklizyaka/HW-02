@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    const sizeMD = {
+        calories: 200,
+        price: 100,
+    };
+
+    const sizeXL = {
+        calories: 350,
+        price: 160,
+    };
+
+    const beefCutlet = {
+        name: 'Beef Cutlet',
+        calories: 120,
+        price: 40,
+    };
+
+    const chickenCutlet = {
+        name: 'Chicken Cutlet',
+        calories: 80,
+        price: 60,
+    };
+
+    const stuffingCheese = {
+        name: 'Cheese',
+        calories: 15,
+        price: 10,
+    };
+
+    const stuffingPotato = {
+        name: 'Potato',
+        calories: 65,
+        price: 10,
+    };
+
+    const toppingMayo = {
+        name: 'Mayo',
+        calories: 30,
+        price: 10,
+    };
+
+    const toppingKetchup = {
+        name: 'Ketchup',
+        calories: 25,
+        price: 10,
+    };
+
+
+    class Hamburger {
+        constructor (size) {
+        this.size = size;
+        this.topping = [];
+        this.stuffing = [
+            {
+                cutlet: beefCutlet,
+                calories: 120,
+                price: 40,
+            }
+        ];
+    }
+
+        addStuffing(stuffing) {
+            this.stuffing.push(stuffing)
+        };
+
+        addTopping(topping) {
+            this.topping.push(topping)
+        };
+
+        calculateCalories() {
+            let price = 0;
+            price += this.size.calories;
+            let stuffingCalories = this.stuffing.reduce((accum, item) => {
+                accum += item['calories'];
+                return accum
+            }, 0);
+
+            let toppingCalories = this.topping.reduce((accum, item) => {
+                accum += item['calories'];
+                return accum
+            }, 0);
+
+            return price + stuffingCalories + toppingCalories
+        };
+
+        calculatePrice = function () {
+            let price = 0;
+            price += this.size.price;
+            let stuffingPrice = this.stuffing.reduce((accum, item) => {
+                accum += item['price'];
+                return accum
+            }, 0);
+
+            let toppingPrice = this.topping.reduce((accum, item) => {
+                accum += item['price'];
+                return accum
+            }, 0);
+
+            return price + stuffingPrice + toppingPrice;
+        };
+    }
+
+    class Cheeseburger extends Hamburger {
+        constructor(size) {
+            super();
+            this.size = size;
+            this.topping = [];
+            this.stuffing = [
+                {
+                    cutlet: chickenCutlet,
+                    calories: 80,
+                    price: 60,
+                },
+                {
+                    stuffing: stuffingCheese,
+                    calories: 15,
+                    price: 10,
+                }
+            ];
+        }
+    }
+
+    const burger = new Hamburger(sizeMD);
+    console.log(burger);
+
+    // добавка из майонеза
+
+    burger.addTopping(toppingMayo);
+
+    // спросим сколько там калорий
+
+    console.log("Calories: " + burger.calculateCalories());
+
+    // // сколько стоит
+
+    console.log("Price: " + burger.calculatePrice());
+    // // я тут передумал и решил добавить еще приправу
+
+    burger.addTopping(toppingKetchup);
+
+    // // А сколько теперь стоит?
+
+    console.log("Price with sauce: " + burger.calculatePrice());
+
+    console.log(burger);
+
+    const cheeseburger = new Cheeseburger(sizeXL);
+    console.log(cheeseburger);
+    cheeseburger.addStuffing(stuffingCheese);
+    console.log("Calories: " + cheeseburger.calculateCalories());
+    cheeseburger.addTopping(toppingMayo);
+    console.log("Price: " + cheeseburger.calculatePrice());
+    console.log("Price with sauce: " + cheeseburger.calculatePrice());
+    console.log(cheeseburger);
+
+</script>
+</body>
+</html>
