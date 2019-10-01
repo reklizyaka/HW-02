@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+
+        body{
+            list-style: none;
+            text-decoration: none;
+            padding: 0;
+            margin: 0;
+            font: 1em/1.4em sans-serif;
+        }
+
+        ul{
+            width: 200px;
+            margin: 20px;
+        }
+
+        ul ul{
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 70%;
+            transition: 0.5s opacity;
+            display: none;
+        }
+
+        ul li {
+            position: relative;
+        }
+
+        .menu__list ul{
+            display: block;
+        }
+
+        ul li {
+            background: #3d3d3d;
+            color: #fff;
+            padding: 10px;
+            display: block;
+            transition: 0.5s all;
+        }
+
+        ul li:hover {
+            background: #666;
+            padding: 10px 0 10px 20px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: white;
+        }
+
+
+        .menu__list:hover {
+            opacity: 1;
+            top: 0;
+        }
+
+        .menu__list::after {
+            content: " ";
+            position: absolute;
+            border: 5px solid;
+            border-color: transparent transparent transparent #eee;
+            top: 1em;
+            right: 0.7em;
+            transition: 0.5s;
+        }
+
+        .menu__list:hover::after{
+            -webkit-transform: scaleX(-1);
+            -ms-transform: scaleX(-1);
+            transform: scaleX(-1);
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    const nav = [
+        {
+            listText: 'Action',
+            link: 'https://www.google.com'
+        },
+        {
+            listText: 'Another action 2',
+            link: 'https://www.google.com'
+        },
+        {
+            listText: 'Submenu',
+            listClass: 'submenu',
+            submenu: [
+                {
+                    listText: 'Submenu action',
+                    link: 'https://www.google.com'
+                },
+                {
+                    listText: 'Another submenu action',
+                    link: 'https://www.google.com'
+                    },
+                    {
+                      listText: 'Subsubmenu',
+                      listClass: 'submenu',
+                      submenu: [
+                      {
+                        listText: 'Smth else 1',
+                        link: 'https://www.google.com'
+                      },
+                      {
+                        listText: 'Smth else 2',
+                        link: 'https://www.google.com'
+                      },
+                      {
+                        listText: 'Smth else 3',
+                        link: 'https://www.google.com'
+                      },
+                      ]
+                },
+            ]
+        },
+        {
+            listText: 'Submenu 2',
+            listClass: 'submenu',
+            submenu: [
+                {
+                    listText: 'Submenu action',
+                    link: 'https://www.google.com'
+                },
+                {
+                    listText: 'Another submenu action',
+                    link: 'https://www.google.com'
+                },
+                {
+                    listText: 'Subsubmenu',
+                    link: 'https://www.google.com'
+                }
+            ]
+        }
+    ];
+    const navBuild = data => {
+        const $ul = document.createElement('ul');
+
+
+        data.forEach(function(element) {
+            const $li = document.createElement('li');
+            if(element.listClass) {
+                $li.classList.add(element.listClass)
+            }
+            if(element.link) {
+                const $linkNav = document.createElement('a');
+                $linkNav.href = element.link;
+                $linkNav.classList.add('nav-link');
+                $linkNav.innerText = element.listText;
+                $li.append($linkNav);
+            }
+            if(element.submenu) {
+                const $subMenu = navBuild(element.submenu);
+                $li.innerText = element.listText;
+                $li.append($subMenu)
+            }
+            $ul.append($li)
+        });
+        return $ul;
+    };
+    const $menu = navBuild(nav);
+    document.body.prepend($menu);
+
+    const $dropMenu = document.querySelectorAll('.submenu');
+    $dropMenu.forEach(element => {
+        element.addEventListener('click', () => {
+            element.classList.toggle('menu__list')
+        })
+    });
+
+    const $navLinks = document.querySelectorAll('.nav-link');
+
+    $navLinks.forEach(element => {
+        element.addEventListener('click', function(event){
+            event.preventDefault();
+            const isLeave = confirm('Покинуть страницу?');
+            if(isLeave) {
+                const linkTo = event.target.getAttribute('href');
+                window.location.href = linkTo;
+            }
+        })
+    })
+</script>
+
+</body>
+</html>
